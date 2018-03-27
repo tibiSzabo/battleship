@@ -1,12 +1,13 @@
 import os
+import random
 from battleship_artwork import *
 from battleship_boards import *
+
 
 def main():
     os.system('clear')
     artwork()
     asd = ""
-
     while asd.lower() != "c":
         asd = input("\n\n\n\n\nEnter 'c' to continue: ")
 
@@ -20,9 +21,12 @@ def print_board(board):
         n += 1
 
 
-def set_ship_1(board):
+def set_ship_1(board, random=False):
     whos_turn(board)
-    value = input("Set your first ship: ")
+    if random is False:
+        value = input("Set your first ship: ")
+    if random is True:
+        value = generate_random_coords()
     if len(value) == 3 and value[1] == "-":
         try:
             board[int(value[0])-1][int(value[2])-1] = "-H-"
@@ -34,13 +38,20 @@ def set_ship_1(board):
         print_board(board)
         whos_turn(board)
         set_ship_1(board)
-    print_board(board)
+    if random is False:
+        print_board(board)
 
 
-def set_ship_2(board):
-    orientation = input("\nSet the orientation of your second ship, (h)orizontal or (v)ertical: ")
+def set_ship_2(board, random=False):
+    if random is False:
+        orientation = input("\nSet the orientation of your second ship, (h)orizontal or (v)ertical: ")
+    if random is True:
+        orientation = generate_random_orientation()
     if orientation == "h":
-        value = input("\nSet the starter position of your second ship: ")
+        if random is False:
+            value = input("\nSet the starter position of your second ship: ")
+        if random is True:
+            value = generate_random_coords()
         if len(value) == 3:
             try:
                 if board[int(value[0])-1][int(value[2])-1] != "-H-" and board[int(value[0])-1][int(value[2])] != "-H-":
@@ -56,7 +67,10 @@ def set_ship_2(board):
             print_board(board)
             set_ship_2(board)
     elif orientation == "v":
-        value = input("\nSet the starter position of your second ship: ")
+        if random is False:
+            value = input("\nSet the starter position of your second ship: ")
+        if random is True:
+            value = generate_random_coords()
         if len(value) == 3:
             try:
                 if board[int(value[0])-1][int(value[2])-1] != "-H-" and board[int(value[0])][int(value[2])-1] != "-H-":
@@ -74,13 +88,20 @@ def set_ship_2(board):
     else:
         print_board(board)
         set_ship_2(board)
-    print_board(board)
+    if random is False:
+        print_board(board)
 
 
-def set_ship_3(board):
-    orientation = input("\nSet the orientation of your third ship, (h)orizontal or (v)ertical: ")
+def set_ship_3(board, random=False):
+    if random is False:
+        orientation = input("\nSet the orientation of your third ship, (h)orizontal or (v)ertical: ")
+    if random is True:
+        orientation = generate_random_orientation()
     if orientation == "h":
-        value = input("\nSet the starter position of your third ship: ")
+        if random is False:
+            value = input("\nSet the starter position of your third ship: ")
+        if random is True:
+            value = generate_random_coords()
         if len(value) == 3:
             try:
                 if board[int(value[0])-1][int(value[2])-1] != "-H-" and board[int(value[0])-1][int(value[2])] != "-H-" and board[int(value[0])-1][int(value[2])+1] != "-H-":
@@ -97,7 +118,10 @@ def set_ship_3(board):
             print_board(board)
             set_ship_3(board)
     elif orientation == "v":
-        value = input("\nSet the starter position of your third ship: ")
+        if random is False:
+            value = input("\nSet the starter position of your third ship: ")
+        if random is True:
+            value = generate_random_coords()
         if len(value) == 3:
             try:
                 if board[int(value[0])-1][int(value[2])-1] != "-H-" and board[int(value[0])][int(value[2])-1] != "-H-" and board[int(value[0])+1][int(value[2])-1] != "-H-":
@@ -116,7 +140,8 @@ def set_ship_3(board):
     else:
         print_board(board)
         set_ship_3(board)
-    print_board(board)
+    if random is False:
+        print_board(board)
 
 
 def whos_turn(board):
@@ -150,3 +175,26 @@ def print_enemy(board):
         print(board[n])
         n += 1
     print("Your Board ")
+
+
+def generate_random_coords():
+    a1 = random.randrange(1, 5)
+    a2 = "-"
+    a3 = random.randrange(1, 5)
+    result = str(a1) + a2 + str(a3)
+    return result
+
+
+def generate_random_orientation():
+    random_int = random.randrange(1, 2)
+    if random_int == 1:
+        orientation = "v"
+    else:
+        orientation = "v"
+    return orientation
+
+
+def generate_computer_table(board):
+    set_ship_1(board, True)
+    set_ship_2(board, True)
+    set_ship_3(board, True)
