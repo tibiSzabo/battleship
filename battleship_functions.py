@@ -144,16 +144,23 @@ def set_ship_3(board, random=False):
         print_board(board)
 
 
-def whos_turn(board):
-    if board == board1:
-        print("Player 1")
-    elif board == board2:
-        print("Player 2")
+def whos_turn(board, computer=False):
+    if computer is False:
+        if board == board1:
+            print("Player 1")
+        elif board == board2:
+            print("Player 2")
+    else:
+        print("Computer")
 
 
-def shoot(board, board_2, board_3, win):
-    whos_turn(board_3)
-    value = input("\nWhere do you want to shoot? ")
+def shoot(board, board_2, board_3, win, random=False):
+    if random is False:
+        whos_turn(board_3)
+        value = input("\nWhere do you want to shoot? ")
+    if random is True:
+        whos_turn(board_3, True)
+        value = generate_random_coords()
     try:
         if board[int(value[0])-1][int(value[2])-1] == "-H-":
             board[int(value[0])-1][int(value[2])-1] = "-X-"
@@ -192,6 +199,12 @@ def generate_random_orientation():
     else:
         orientation = "v"
     return orientation
+
+
+def create_player_table(board):
+    set_ship_1(board)
+    set_ship_2(board)
+    set_ship_3(board)
 
 
 def generate_computer_table(board):
