@@ -62,9 +62,15 @@ if single_or_multi.lower() == "s":
         win_1 = win_1 + shoot(board2, board1a, board1, win_1)
         if win_1 == 6:
             break
+        print_board(board1a)
+        print("Enemy Board ")
+        print_enemy(board1)
         time.sleep(3)
+
         print_board(board2a)
         win_2 = win_2 + shoot(board1, board2a, board2, win_2, random=True)
+        print_board(board2a)
+        whos_turn(board2, True)
         time.sleep(3)
         if win_2 == 6:
             break

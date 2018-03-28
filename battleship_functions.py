@@ -58,11 +58,17 @@ def set_ship_2(board, random=False):
                     board[int(value[0])-1][int(value[2])] = "-H-"
                     board[int(value[0])-1][int(value[2])-1] = "-H-"
                 else:
-                    print_board(board)
-                    set_ship_2(board)
+                    if random is False:
+                        print_board(board)
+                        set_ship_2(board)
+                    if random is True:
+                        set_ship_2(board, True)
             except (IndexError, ValueError):
-                print_board(board)
-                set_ship_2(board)
+                if random is False:
+                        print_board(board)
+                        set_ship_2(board)
+                if random is True:
+                    set_ship_2(board, True)
         else:
             print_board(board)
             set_ship_2(board)
@@ -77,11 +83,17 @@ def set_ship_2(board, random=False):
                     board[int(value[0])][int(value[2])-1] = "-H-"
                     board[int(value[0])-1][int(value[2])-1] = "-H-"
                 else:
-                    print_board(board)
-                    set_ship_2(board)
+                    if random is False:
+                        print_board(board)
+                        set_ship_2(board)
+                    if random is True:
+                        set_ship_2(board, True)
             except (IndexError, ValueError):
-                print_board(board)
-                set_ship_2(board)
+                if random is False:
+                        print_board(board)
+                        set_ship_2(board)
+                if random is True:
+                    set_ship_2(board, True)
         else:
             print_board(board)
             set_ship_2(board)
@@ -109,11 +121,17 @@ def set_ship_3(board, random=False):
                     board[int(value[0])-1][int(value[2])-1] = "-H-"
                     board[int(value[0])-1][int(value[2])] = "-H-"
                 else:
-                    print_board(board)
-                    set_ship_3(board)
+                    if random is False:
+                        print_board(board)
+                        set_ship_3(board)
+                    if random is True:
+                        set_ship_3(board, True)
             except (IndexError, ValueError):
-                print_board(board)
-                set_ship_3(board)
+                if random is False:
+                        print_board(board)
+                        set_ship_3(board)
+                if random is True:
+                    set_ship_3(board, True)
         else:
             print_board(board)
             set_ship_3(board)
@@ -129,11 +147,17 @@ def set_ship_3(board, random=False):
                     board[int(value[0])-1][int(value[2])-1] = "-H-"
                     board[int(value[0])][int(value[2])-1] = "-H-"
                 else:
-                    print_board(board)
-                    set_ship_3(board)
+                    if random is False:
+                        print_board(board)
+                        set_ship_3(board)
+                    if random is True:
+                        set_ship_3(board, True)
             except (IndexError, ValueError):
-                print_board(board)
-                set_ship_3(board)
+                if random is False:
+                        print_board(board)
+                        set_ship_3(board)
+                if random is True:
+                    set_ship_3(board, True)
         else:
             print_board(board)
             set_ship_3(board)
@@ -166,6 +190,8 @@ def shoot(board, board_2, board_3, win, random=False):
             board[int(value[0])-1][int(value[2])-1] = "-X-"
             board_2[int(value[0])-1][int(value[2])-1] = "-X-"
             return 1
+        elif board[int(value[0])-1][int(value[2])-1] == "-X-":
+            return 0
         else:
             board[int(value[0])-1][int(value[2])-1] = "-O-"
             board_2[int(value[0])-1][int(value[2])-1] = "-O-"
