@@ -10,7 +10,7 @@ def artwork():
     88888P" "Y888888 "Y888 "Y888888 "Y8888  88888P'888  88888888888P"
                                                             888
                                                             888
-                                                            888           copyright: codecool team cicák
+                                                            888           copyright: codecool team bogárlák
                                      |__
                                      |\/
                                      ---
