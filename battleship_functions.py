@@ -1,5 +1,6 @@
 import os
 import random
+import time
 from battleship_artwork import *
 from battleship_boards import *
 
@@ -174,7 +175,7 @@ def whos_turn(board, computer=False):
             print("Player 1")
         elif board == board2:
             print("Player 2")
-    else:
+    if computer is True:
         print("Computer")
 
 
@@ -183,18 +184,39 @@ def shoot(board, board_2, board_3, win, random=False):
         whos_turn(board_3)
         value = input("\nWhere do you want to shoot? ")
     if random is True:
-        whos_turn(board_3, True)
         value = generate_random_coords()
     try:
         if board[int(value[0])-1][int(value[2])-1] == "-H-":
+            print_board(board_2)
+            time.sleep(1)
             board[int(value[0])-1][int(value[2])-1] = "-X-"
             board_2[int(value[0])-1][int(value[2])-1] = "-X-"
+            print_board(board_2)
+            if random is False:
+                whos_turn(board_3)
+            else:
+                whos_turn(board_3, True)
+            time.sleep(2)
             return 1
         elif board[int(value[0])-1][int(value[2])-1] == "-X-":
+            print_board(board_2)
+            if random is False:
+                whos_turn(board_3)
+            else:
+                whos_turn(board_3, True)
+            time.sleep(2)
             return 0
         else:
+            print_board(board_2)
+            time.sleep(2)
             board[int(value[0])-1][int(value[2])-1] = "-O-"
             board_2[int(value[0])-1][int(value[2])-1] = "-O-"
+            print_board(board_2)
+            if random is False:
+                whos_turn(board_3)
+            else:
+                whos_turn(board_3, True)
+            time.sleep(2)
             return 0
     except (IndexError, ValueError):
         print("\n   Oops You can't shoot there")
