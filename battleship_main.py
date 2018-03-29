@@ -1,5 +1,6 @@
 import os
 import time
+import sys
 from battleship_functions import *
 from battleship_boards import *
 from battleship_artwork import *
@@ -7,6 +8,7 @@ from battleship_artwork import *
 win_1 = 0
 win_2 = 0
 
+sys.stdout.write("\x1b[8;{rows};{cols}t".format(rows=32, cols=110))
 os.system('clear')
 main()
 single_or_multi = ""
